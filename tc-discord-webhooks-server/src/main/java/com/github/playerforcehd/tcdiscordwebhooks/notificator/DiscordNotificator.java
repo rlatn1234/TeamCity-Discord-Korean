@@ -173,9 +173,9 @@ public class DiscordNotificator implements Notificator {
         if (project != null) {
             projectName = project.getName();
         }
-        discordEmbedFields.add(new DiscordEmbedField("Project: ", projectName, true));
+        discordEmbedFields.add(new DiscordEmbedField("프로젝트: ", projectName, true));
         // Build name
-        discordEmbedFields.add(new DiscordEmbedField("Build:", sRunningBuild.getBuildTypeName(), true));
+        discordEmbedFields.add(new DiscordEmbedField("빌드:", sRunningBuild.getBuildTypeName(), true));
         // Branch
         Branch branch = sRunningBuild.getBranch();
         String branchName = "Default";
@@ -192,8 +192,8 @@ public class DiscordNotificator implements Notificator {
 
     @Override
     public void notifyBuildStarted(@NotNull SRunningBuild sRunningBuild, @NotNull Set<SUser> users) {
-        String title = "Build started";
-        String description = "A build with the ID " + sRunningBuild.getBuildId() + " has been started!";
+        String title = "빌드 시작됨!";
+        String description = "ID " + sRunningBuild.getBuildId() + " 빌드가 시작되었습니다.";
         DiscordWebHookPayload discordWebHookPayload = new DiscordWebHookPayload();
         discordWebHookPayload.setEmbeds(new DiscordEmbed[]{
                 new DiscordEmbed(
@@ -212,8 +212,8 @@ public class DiscordNotificator implements Notificator {
 
     @Override
     public void notifyBuildSuccessful(@NotNull SRunningBuild sRunningBuild, @NotNull Set<SUser> users) {
-        String title = "Build succeeded!";
-        String description = "The build with the ID " + sRunningBuild.getBuildId() + " has succeeded!";
+        String title = "빌드 성공!";
+        String description = "ID " + sRunningBuild.getBuildId() + " 빌드가 성공했습니다!";
         DiscordWebHookPayload discordWebHookPayload = new DiscordWebHookPayload();
         discordWebHookPayload.setEmbeds(new DiscordEmbed[]{
                 new DiscordEmbed(
@@ -232,8 +232,8 @@ public class DiscordNotificator implements Notificator {
 
     @Override
     public void notifyBuildFailed(@NotNull SRunningBuild sRunningBuild, @NotNull Set<SUser> users) {
-        String title = "Build failed";
-        String description = "The build with the ID " + sRunningBuild.getBuildId() + " has failed!";
+        String title = "빌드 실패";
+        String description = "ID " + sRunningBuild.getBuildId() + " 빌드가 실패했습니다.";
         DiscordWebHookPayload discordWebHookPayload = new DiscordWebHookPayload();
         discordWebHookPayload.setEmbeds(new DiscordEmbed[]{
                 new DiscordEmbed(

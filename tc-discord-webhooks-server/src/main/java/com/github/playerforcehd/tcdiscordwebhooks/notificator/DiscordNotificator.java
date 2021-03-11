@@ -109,8 +109,8 @@ public class DiscordNotificator implements Notificator {
      */
     private void initializeNotificator(NotificatorRegistry notificatorRegistry) {
         ArrayList<UserPropertyInfo> userProperties = new ArrayList<>();
-        userProperties.add(new UserPropertyInfo(WEBHOOK_URL_KEY, "WebHook URL"));
-        userProperties.add(new UserPropertyInfo(WEBHOOK_USERNAME_KEY, "Username"));
+        userProperties.add(new UserPropertyInfo(WEBHOOK_URL_KEY, "웹훅 URL"));
+        userProperties.add(new UserPropertyInfo(WEBHOOK_USERNAME_KEY, "사용자명"));
         notificatorRegistry.register(this, userProperties);
     }
 
@@ -182,10 +182,10 @@ public class DiscordNotificator implements Notificator {
         if (branch != null && !branch.getName().equals(Branch.DEFAULT_BRANCH_NAME)) {
             branchName = branch.getDisplayName();
         }
-        discordEmbedFields.add(new DiscordEmbedField("Branch", branchName, true));
+        discordEmbedFields.add(new DiscordEmbedField("브랜치", branchName, true));
         Comment comment = sRunningBuild.getBuildComment();
         if(comment != null) {
-            discordEmbedFields.add(new DiscordEmbedField("Comment", comment.getComment(), false));
+            discordEmbedFields.add(new DiscordEmbedField("코멘트", comment.getComment(), false));
         }
         return discordEmbedFields.toArray(new DiscordEmbedField[0]);
     }
@@ -252,8 +252,8 @@ public class DiscordNotificator implements Notificator {
 
     @Override
     public void notifyBuildFailedToStart(@NotNull SRunningBuild sRunningBuild, @NotNull Set<SUser> users) {
-        String title = "Build failed to start";
-        String description = "The build with the ID " + sRunningBuild.getBuildId() + " has failed to start!";
+        String title = "빌드 시작 실패";
+        String description = "ID " + sRunningBuild.getBuildId() + " 빌드 시작을 실패했습니다!";
         DiscordWebHookPayload discordWebHookPayload = new DiscordWebHookPayload();
         discordWebHookPayload.setEmbeds(new DiscordEmbed[]{
                 new DiscordEmbed(
@@ -272,7 +272,7 @@ public class DiscordNotificator implements Notificator {
 
     @Override
     public void notifyLabelingFailed(@NotNull Build build, @NotNull VcsRoot vcsRoot, @NotNull Throwable throwable, @NotNull Set<SUser> users) {
-        String title = "Labeling failed";
+        String title = "라벨링 실패";
         String description = "Labeling of build with the ID " + build.getBuildId() + " has failed!";
         DiscordWebHookPayload discordWebHookPayload = new DiscordWebHookPayload();
         discordWebHookPayload.setEmbeds(new DiscordEmbed[]{
